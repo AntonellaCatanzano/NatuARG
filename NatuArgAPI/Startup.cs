@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using NatuArgAPI.Data;
 using NatuArgAPI.Data.Contracts;
 using NatuArgAPI.Data.Repository;
+using AutoMapper;
 
 namespace NatuArgAPI
 {
@@ -32,7 +33,7 @@ namespace NatuArgAPI
             services.AddControllers();
             services.AddDbContext<NatuArgDbContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddAutoMapper(typeof(Startup));
 
             //Dependencias
             services.AddScoped<IParqueRepository, ParqueRepository>();

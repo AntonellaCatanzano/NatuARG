@@ -19,47 +19,47 @@ namespace NatuArgAPI.Data.Repository
             _dbSet = context.Set<Parque>();
         }
 
-        public bool CreateParque(Parque parque)
+        public async Task<bool> CreateParqueAsync(Parque parque)
         {
-            _dbSet.Add(parque);
-            return Save();
+            await _dbSet.AddAsync(parque);
+            return await SaveAsync();
         }
 
-        public bool DeleteParque(Parque parque)
+        public async Task<bool> DeleteParqueAsync(Parque parque)
         {
             _dbSet.Remove(parque);
-            return Save();
+            return await SaveAsync();
         }
 
-        public Parque GetParque(int id)
+        public async Task<Parque> GetParqueAsync(int id)
         {
-            return _dbSet.FirstOrDefault(a => a.Id == id);
+            return await _dbSet.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public ICollection<Parque> GetParques()
+        public async Task<List<Parque>> GetParquesAsync()
         {
-            return _dbSet.OrderBy(a => a.Nombre).ToList();
+            return await _dbSet.OrderBy(a => a.Nombre).ToListAsync();
         }
 
-        public bool ParqueExist(string name)
+        public async Task<bool> ParqueExistAsync(string name)
         {
-            return _dbSet.Any(a => a.Nombre.ToLower().Trim() == name.ToLower().Trim());
+            return await _dbSet.AnyAsync(a => a.Nombre.ToLower().Trim() == name.ToLower().Trim());
         }
 
-        public bool ParqueExist(int id)
+        public async Task<bool> ParqueExistAsync(int id)
         {
-            return _dbSet.Any(a => a.Id == id);
+            return await _dbSet.AnyAsync(a => a.Id == id);
         }
 
-        public bool Save()
+        public async Task<bool> SaveAsync()
         {
-            return _context.SaveChanges() >= 0 ? true : false;
+            return await _context.SaveChangesAsync() >= 0 ? true : false;
         }
 
-        public bool UpdateParque(Parque parque)
+        public async Task<bool> UpdateParqueAsync(Parque parque)
         {
             _dbSet.Update(parque);
-            return Save();
+            return await SaveAsync();
         }
     }
 }
