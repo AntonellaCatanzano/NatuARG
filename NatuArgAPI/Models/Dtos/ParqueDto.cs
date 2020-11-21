@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace NatuArgAPI.Models.Dtos
 {
-    public class ParqueDto
+    public class ParqueDto: LugarDto
     {
-        public int Id { get; set; }
-        [Required]
-        public string Nombre { get; set; }
         [Required]
         public string Provincia { get; set; }
-        public string Imagen { get; set; }
-        public string Descripcion { get; set; }
     }
 }

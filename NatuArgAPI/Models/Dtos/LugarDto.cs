@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace NatuArgAPI.Models.Dtos
 {
-    public class AtraccionDto: LugarDto
+    public abstract class LugarDto
     {
-        public string Imagen2 { get; set; }
-        public string Imagen3 { get; set; }
-
+        public int Id { get; set; }
         [Required]
-        public int ParqueId { get; set; }
+        public string Nombre { get; set; }
+        public string Imagen { get; set; }
+        public string Descripcion { get; set; }
     }
 }

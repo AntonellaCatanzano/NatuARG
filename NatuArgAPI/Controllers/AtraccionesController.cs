@@ -35,7 +35,7 @@ namespace NatuArgAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(atracciones);
+            return Ok(_mapper.Map<List<AtraccionDto>>(atracciones));
         }
 
         [HttpGet("{id:int}", Name = "GetAtraccionAsync")]
