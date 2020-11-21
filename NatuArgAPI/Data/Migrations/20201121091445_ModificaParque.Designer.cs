@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NatuArgAPI.Data;
 
 namespace NatuArgAPI.Migrations
 {
     [DbContext(typeof(NatuArgDbContext))]
-    partial class NatuArgDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201121091445_ModificaParque")]
+    partial class ModificaParque
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,6 +52,9 @@ namespace NatuArgAPI.Migrations
 
                     b.Property<DateTime>("Updated")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("probando")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

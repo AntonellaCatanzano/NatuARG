@@ -15,5 +15,6 @@ namespace NatuArgAPI.Data
         }
 
         public DbSet<Parque> Parques { get; set; }
+        public DbSet<Atraccion> Atracciones { get; set; }
     }
 }

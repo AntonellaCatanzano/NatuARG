@@ -13,7 +13,7 @@ namespace NatuArgAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ParquesController : ControllerBase
+    public class ParquesController : Controller
     {
         private readonly IParqueRepository _parqueRepository;
         private readonly IMapper _mapper;

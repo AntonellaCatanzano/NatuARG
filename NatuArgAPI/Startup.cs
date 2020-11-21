@@ -37,6 +37,7 @@ namespace NatuArgAPI
 
             //Dependencias
             services.AddScoped<IParqueRepository, ParqueRepository>();
+            services.AddScoped<IAtraccionRepository, AtraccionRepository>();
 
         }
 
