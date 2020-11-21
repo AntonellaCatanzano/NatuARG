@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace NatuArgAPI.Controllers
 {
     [Route("api/[controller]")]
+    [ApiExplorerSettings(GroupName = "NatuArgOpenApiAtracciones")]
     [ApiController]
     public class AtraccionesController : Controller
     {
@@ -65,7 +66,7 @@ namespace NatuArgAPI.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> PostAtraccionAsync([FromBody] AtraccionDto atraccionDto)
+        public async Task<ActionResult> PostAtraccionAsync([FromBody] AtraccionInsertDto atraccionDto)
         {
             if (await _atraccionRepository.AtraccionExistAsync(atraccionDto.Id))
             {
@@ -86,7 +87,7 @@ namespace NatuArgAPI.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            atraccionDto = _mapper.Map<AtraccionDto>(atraccion);
+            atraccionDto = _mapper.Map<AtraccionInsertDto>(atraccion);
 
             return CreatedAtRoute("GetAtraccionAsync", new { id = atraccionDto.Id }, atraccionDto);
         }
@@ -96,7 +97,7 @@ namespace NatuArgAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> PutAtraccionAsync(int id, [FromBody] AtraccionDto atraccionDto)
+        public async Task<ActionResult> PutAtraccionAsync(int id, [FromBody] AtraccionInsertDto atraccionDto)
         {
             if (atraccionDto is null || id != atraccionDto.Id)
             {

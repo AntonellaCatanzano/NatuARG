@@ -12,6 +12,7 @@ using NatuArgAPI.Models.Dtos;
 namespace NatuArgAPI.Controllers
 {
     [Route("api/[controller]")]
+    [ApiExplorerSettings(GroupName = "NatuArgOpenApiParques")]
     [ApiController]
     public class ParquesController : Controller
     {

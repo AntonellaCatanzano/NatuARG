@@ -12,6 +12,7 @@ namespace NatuArgAPI.Models.Profiles
         public AtraccionProfile()
         {
             CreateMap<Atraccion, AtraccionDto>().ReverseMap();
+            CreateMap<Atraccion, AtraccionInsertDto>().ReverseMap();
         }
     }
 }
