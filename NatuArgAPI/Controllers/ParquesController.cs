@@ -87,7 +87,7 @@ namespace NatuArgAPI.Controllers
 
         // PUT: api/parques/1
         [HttpPut("{id:int}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> PutParqueAsync(int id, [FromBody] ParqueDto parqueDto)
@@ -112,8 +112,8 @@ namespace NatuArgAPI.Controllers
             }
 
             var newParqueDto = _mapper.Map<ParqueDto>(parque);
-
-            return CreatedAtRoute("GetParqueAsync", new { id = newParqueDto.Id }, newParqueDto);
+            
+            return NoContent();
         }
 
         // DELETE: api/parques/1

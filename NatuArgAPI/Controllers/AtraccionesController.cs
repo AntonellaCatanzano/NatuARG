@@ -118,7 +118,7 @@ namespace NatuArgAPI.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return CreatedAtRoute("GetAtraccionAsync", new { id = atraccionDto.Id }, atraccionDto);
+            return NoContent();
         }
 
         // DELETE: api/atracciones/1
