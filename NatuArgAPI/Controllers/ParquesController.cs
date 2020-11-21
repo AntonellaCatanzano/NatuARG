@@ -24,7 +24,11 @@ namespace NatuArgAPI.Controllers
             _mapper = mapper;
         }
 
+        // GET: api/parques
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetParquesAsync()
         {
             var parques = await _parqueRepository.GetParquesAsync();
@@ -32,7 +36,11 @@ namespace NatuArgAPI.Controllers
             return Ok(_mapper.Map<List<ParqueDto>>(parques));
         }
 
+        // GET: api/parques/1
         [HttpGet("{id:int}", Name = "GetParqueAsync")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetParqueAsync(int id)
         {
             var parque = await _parqueRepository.GetParqueAsync(id);
@@ -45,7 +53,11 @@ namespace NatuArgAPI.Controllers
             return Ok(_mapper.Map<ParqueDto>(parque));
         }
 
+        // POST: api/parques
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> PostParqueAsync([FromBody] ParqueDto parqueDto)
         {
             if (parqueDto is null)
@@ -72,7 +84,11 @@ namespace NatuArgAPI.Controllers
             return CreatedAtRoute("GetParqueAsync", new { id = newParqueDto.Id }, newParqueDto);
         }
 
+        // PUT: api/parques/1
         [HttpPut("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> PutParqueAsync(int id, [FromBody] ParqueDto parqueDto)
         {
             if (parqueDto is null || id != parqueDto.Id)
@@ -99,7 +115,11 @@ namespace NatuArgAPI.Controllers
             return CreatedAtRoute("GetParqueAsync", new { id = newParqueDto.Id }, newParqueDto);
         }
 
+        // DELETE: api/parques/1
         [HttpDelete("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> DeleteParqueAsync(int id)
         {
             if (!await _parqueRepository.ParqueExistAsync(id))

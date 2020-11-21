@@ -24,7 +24,11 @@ namespace NatuArgAPI.Controllers
             _mapper = mapper;
         }
 
+        // GET: api/atracciones
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetAtraccionAsync()
         {
             var atracciones = await _atraccionRepository.GetAtraccionAsync();
@@ -38,7 +42,11 @@ namespace NatuArgAPI.Controllers
             return Ok(_mapper.Map<List<AtraccionDto>>(atracciones));
         }
 
+        // GET: api/atracciones/1
         [HttpGet("{id:int}", Name = "GetAtraccionAsync")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetAtraccionAsync(int id)
         {
             var atraccion = await _atraccionRepository.GetAtraccionAsync(id);
@@ -52,7 +60,11 @@ namespace NatuArgAPI.Controllers
             return Ok(atraccion);
         }
 
+        // POST: api/atracciones
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> PostAtraccionAsync([FromBody] AtraccionDto atraccionDto)
         {
             if (await _atraccionRepository.AtraccionExistAsync(atraccionDto.Id))
@@ -79,7 +91,11 @@ namespace NatuArgAPI.Controllers
             return CreatedAtRoute("GetAtraccionAsync", new { id = atraccionDto.Id }, atraccionDto);
         }
 
+        // PUT: api/atracciones/1
         [HttpPut("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> PutAtraccionAsync(int id, [FromBody] AtraccionDto atraccionDto)
         {
             if (atraccionDto is null || id != atraccionDto.Id)
@@ -104,7 +120,11 @@ namespace NatuArgAPI.Controllers
             return CreatedAtRoute("GetAtraccionAsync", new { id = atraccionDto.Id }, atraccionDto);
         }
 
+        // DELETE: api/atracciones/1
         [HttpDelete("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> DeleteAtraccionAsync(int id)
         {
             if (!await _atraccionRepository.AtraccionExistAsync(id))
