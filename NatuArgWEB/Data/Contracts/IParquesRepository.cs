@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NatuArgWEB.Data.Contracts
 {
-    interface IParquesRepository: IGenericRepository<Parque>
+    public interface IParquesRepository: IGenericRepository<Parque>
     {
     }
 }

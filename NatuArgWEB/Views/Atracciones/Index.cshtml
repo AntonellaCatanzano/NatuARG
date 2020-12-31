@@ -1,0 +1,26 @@
+﻿@model List<Atraccion>
+
+<div class="container mt-4 mb-4">
+    <div class="container text-center">
+        <h1 class="titulo heading-primary-main">Atracciones</h1>
+        <div class="linea"></div>
+        <br>
+    </div>
+    <div class="row justify-content-center">
+        @foreach (var atraccion in Model)
+        {
+            @if (atraccion.ParqueId == ViewBag.ParqueId)
+            {
+                <div class="card cardMe col-3 m-2" style="width: 18rem;">
+                    <img src="~/img/@atraccion.Imagen" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5>@atraccion.Nombre</h5>
+                        <p class="card-text">@atraccion.Descripcion</p>
+
+                    </div>
+                    <a href="#" class="btnCard">Ver más</a>
+                </div>
+            }
+        }
+    </div>
+</div>

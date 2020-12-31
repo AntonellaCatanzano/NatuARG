@@ -55,7 +55,7 @@ namespace NatuArgWEB.Data.Repository
             return (response.StatusCode == HttpStatusCode.NoContent);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(string url)
+        public async Task<List<T>> GetAllAsync(string url)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, url);
 
@@ -69,7 +69,7 @@ namespace NatuArgWEB.Data.Repository
                 // Obtiene el contenido de la respuesta
                 var jsonString = await response.Content.ReadAsStringAsync();
                 // Lo retorna luego de deserializarlo desde json
-                return JsonConvert.DeserializeObject<IEnumerable<T>>(jsonString);
+                return JsonConvert.DeserializeObject<List<T>>(jsonString);
             }
             else
             {

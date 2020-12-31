@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NatuArgWEB.Data.Contracts
 {
-    interface IAtraccionesRepository: IGenericRepository<Atraccion>
+    public interface IAtraccionesRepository: IGenericRepository<Atraccion>
     {
     }
 }
